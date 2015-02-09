@@ -35,6 +35,7 @@ HOSTAPD_PID_FILE="/home/ric/virtual-ap/hostapd.pid"
 nmcli nm wifi off
 rfkill unblock wlan
 init_iface $@
+[ -z "$(ps -e|grep dnsmasq)" ] && killall dnsmasq
 [ -f $DNSMASQ_PID_FILE ] && \
         echo "dnsmasq already running" || \
         dnsmasq -C $DNSMASQ_CONF -x $DNSMASQ_PID_FILE
